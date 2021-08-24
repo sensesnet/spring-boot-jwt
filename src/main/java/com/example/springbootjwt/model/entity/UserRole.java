@@ -1,2 +1,4 @@
-package com.example.springbootjwt.model.entity;public class UserRole {
+package com.example.springbootjwt.model.entity;
+
+public enum UserRole {
 }

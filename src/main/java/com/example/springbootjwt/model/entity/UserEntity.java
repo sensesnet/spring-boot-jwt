@@ -1,2 +1,9 @@
-package com.example.springbootjwt.model.entity;public class UserEntity {
+package com.example.springbootjwt.model.entity;
+
+import lombok.Data;
+import org.springframework.stereotype.Component;
+
+@Data
+@Component
+public class UserEntity {
 }

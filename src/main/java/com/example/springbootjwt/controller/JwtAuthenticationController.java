@@ -1,7 +1,7 @@
 package com.example.springbootjwt.controller;
 
-import com.example.springbootjwt.model.JwtRequest;
-import com.example.springbootjwt.model.JwtResponse;
+import com.example.springbootjwt.model.jwt.JwtRequest;
+import com.example.springbootjwt.model.jwt.JwtResponse;
 import com.example.springbootjwt.service.JwtUserDetailsService;
 import com.example.springbootjwt.util.JwtTokenUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -54,6 +54,7 @@ public class JwtAuthenticationController {
 
     private void authenticate(String username, String password) throws Exception {
         try {
+            log.info("Start authentication for:" + username + " " + password);
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException e) {
             log.warn("Error: user disabled - [" + username + "]");

@@ -1,4 +1,4 @@
-package com.example.springbootjwt.model;
+package com.example.springbootjwt.model.jwt;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
