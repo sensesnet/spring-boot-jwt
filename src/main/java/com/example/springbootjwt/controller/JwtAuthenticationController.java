@@ -17,6 +17,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+import java.util.Map;
 
 /**
  * The POST API gets username and password in the body, Using Spring Authentication Manager
@@ -38,7 +46,23 @@ public class JwtAuthenticationController {
     @Autowired
     private JwtUserDetailsService userDetailsService;
 
-
+    @Operation(summary = "Authenticate user")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Successfully logged in",
+                    content = { @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = JwtResponse.class))
+                    }),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Incorrect user data supplied",
+                    content = { @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = Map.class))
+                    })
+    })
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
